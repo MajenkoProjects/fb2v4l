@@ -1,0 +1,33 @@
+FB2V4L
+======
+
+* Virtual Framebuffer to Virtual Video4Linux Connector
+
+This little program connects a virtual framebuffer device to a virtual v4l
+device.  This allows you to run framebuffer-enabled software (such as X
+with the `fbdev` driver) and have the output turned into a video stream
+which can be captured (for example with OpenBroadcast).
+
+Requires:
+
+* Virtual Framebuffer Module - https://github.com/Freescale/linux-module-virtfb
+* V4L Loopback Module - https://github.com/umlaeute/v4l2loopback
+
+Usage:
+
+1. Load the above modules
+2. Start a session, for example:
+
+```
+fb2v4l -f /dev/fb1 -v /dev/video3
+```
+
+You can now wrote to /dev/fb1 and the results will be shown on /dev/video3.
+
+You can specify the dimensions using:
+
+```
+fb2v4l -w 640 -h 480 -f /dev/fb1 -v /dev/video3
+```
+
+The default size is 800x600 and it always uses 32-bit RGBA.
